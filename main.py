@@ -25,7 +25,7 @@ while True:
     
     # Send a GET request to fetch the page content with headers
     response = requests.get(url, headers=headers)
-    time.sleep(2)  # Wait for 2 seconds before making the next request
+    time.sleep(5)  # Wait for 2 seconds before making the next request
     
     # Check if the request was successful (status code 200)
     if response.status_code != 200:
@@ -86,16 +86,11 @@ while True:
         })
         print(f"Processed: {title}")
 
-    # Check if there's a "Next" link to go to the next page
-    next_page_link = soup.find('a', {'rel': 'next'})
-    
-    if next_page_link:
-        # Increment page number to go to the next page
-        page_number += 1
-        time.sleep(2)  # Wait for 2 seconds before making the next request
-    else:
-        # No "Next" link means we have reached the last page
-        break
+    # Move to the next page
+    page_number += 1
+    print(f"Page {page_number - 1} done.")
+
+
 
 # Convert the list of data into a pandas DataFrame
 import pandas as pd
